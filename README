@@ -1,0 +1,69 @@
+Longitude on Latitude
+---------------------
+
+Longitude is a data export tool for Google Latitude personal location
+information.
+
+Longitude is a simple Python program which serves two purposes, first, to
+provide a simple, unix-y way to export your Latitude data, and second, to
+serve as an example of how to fetch data from Latitude using the oauth2
+module.
+
+Requirements
+------------
+
+Python >= 2.5
+Python sqlite3
+Python oauth2
+
+How to use
+----------
+
+Longitude is built as a simple tool to fetch your data from Latitude and place
+it in a database for later manipulation, nothing more, and nothing less. As a
+result, setup has been made as simple as possible, beyond the requirements for
+safe authentication via oauth.
+
+1) First, follow these steps to get your oauth authorization keys from Google:
+
+    a) Visit https://www.google.com/accounts/ManageDomains
+    b) Add a domain you control via "Add a New Domain"
+    c) Under "Manage registration", click the domain you just added
+    d) Follow the steps to verify your domain.
+    e) Get your oauth consumer secret.
+
+2) Now that your domain is set up to authenticate with Google, edit the
+   "longitude.cfg" file accordingly. Set the auth domain to your domain name,
+   and the secret to your oauth consumer secret.
+
+3) Now you are ready to run Longitude. Execute longitude.py and follow the
+   directions. The first time you run the program you will have to
+   authenticate to the Google account you wish to export data for. Simply
+   open the URL which you are prompted to open and authorize your domain.
+   The oauth authentication keys (and *not* your password) will now be stored
+   in the "keys" file, allowing Longitude to silently authenticate in the
+   future.
+
+4) At this point, Longitude is able to access your data and will retrieve
+   as much location data as it can (currently the previous 1000 data points).
+   These will be stored in the sqlite database at "loc_db".
+
+5) If you wish to automatically import new data, at this point you can set up
+   a simple cron job which changes to your Longitude directory and executes
+   Longitude. Longitude will automatically skip data points which have already
+   been imported, and simply import the new points which it finds.
+
+License
+-------
+
+Longitude is licensed under the GNU GPL version 3. The full license is
+included with this source in the LICENSE file.
+
+Copyright
+---------
+
+Copyright (c) 2010 Eric Harmon
+
+Based on examples from oauth2:
+
+Copyright (c) 2007 Leah Culver
