@@ -83,7 +83,7 @@ items = data['data']['items']
 
 if(not os.path.isfile('track/loc_db')):
     conn = sqlite3.connect('track/loc_db')
-    conn.execute('create table loc (timestamp integer primary key, latitude real, longitude real, accuracy real)')
+    conn.execute('create table tracks_location (timestamp integer primary key, latitude real, longitude real, accuracy real)')
 else:
     conn = sqlite3.connect('track/loc_db')
 
