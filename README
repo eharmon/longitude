@@ -52,9 +52,11 @@ safe authentication via oauth.
    'loc_db' in the current path).
 
 5) If you wish to automatically import new data, at this point you can set up
-   a simple cron job which changes to your Longitude directory and executes
-   Longitude. Longitude will automatically skip data points which have already
-   been imported, and simply import the new points which it finds.
+   a simple cron job which executes Longitude. Because Longitude has stored
+   your authorization keys in the keys file, authorization will be silent and
+   require no user intervention from this point forward. Further, Longitude
+   will automatically skip data points which have already been imported and
+   simply import the new points which it finds.
 
 Usage
 -----
@@ -76,6 +78,22 @@ optional arguments:
                         sqlite storage DB for storing waypoints, defaults to
                         'loc_db' in the current path
   -v                    be verbose
+
+Troubleshooting
+---------------
+
+-Ack! After trying to authenticate I still get an authorization error!
+
+   I've recieved reports that Google's oauth API can sometimes lag, causing it
+   to deny requests for Latitude information for a short time after initial
+   authentication. Try again after a few minutes by re-running Longitude (your
+   credentials have already been stored and will automagically be re-used to
+   attempt authentication again).
+
+   If the problem continues, ensure your domain has been properly verified
+   with Google, and that you have correctly entered your configuration
+   information in the Longitude configuration file. Then delete your keys file
+   and try to authenticate again.
 
 License
 -------
